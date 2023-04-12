@@ -38,6 +38,8 @@
         }).catch((error) => {
             if(error.response.data.errors){
                 setErrors(error.response.data.errors);
+            }else{
+                console.log(error);
             }
             // setFieldError('email', error.response.data.errors.email[0]);
         });
@@ -76,16 +78,18 @@
         };
     };
 
-    const updateUser = (values) => {
+    const updateUser = (values,{setErrors}) => {
         axios.put('/api/users/' + formValues.value.id, values)
             .then((response) => {
                 const index = users.value.findIndex(user => user.id === response.data.id);
                 users.value[index] = response.data;
                 $('#userFormModal').modal('hide');
             }).catch((error) => {
-                console.log(error);
-            }).finally(() => {
-                form.value.resetForm();
+                if(error.response.data.errors){
+                    setErrors(error.response.data.errors);
+                }else{
+                    console.log(error);
+                }
             });
     };
 
