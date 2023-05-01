@@ -5,6 +5,12 @@
     import * as yup from 'yup';
     import { useToaster } from '../../toaster';
 
+    // using moment js to format date
+    // import moment from 'moment';
+    
+    // using helper function to format date (helper.js)
+    import { formatDate } from '../../helper';
+
     // const users = [
     //     {
     //         id: 1,
@@ -183,7 +189,18 @@
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.email }}</td>
-                                <td>-</td>
+                                <!-- using map collection method, laravel macro -->
+                                <!-- <td>{{ user.created_at }}</td> -->
+
+                                <!-- using accessor -->
+                                <!-- <td>{{ user.formatted_created_at }}</td> -->
+
+                                <!-- using moment js -->
+                                <!-- <td>{{ moment(user.created_at).format('YYYY-MM-DD') }}</td> -->
+
+                                <!-- using helper function (helper.js)-->
+                                <td>{{ formatDate(user.created_at) }}</td>
+
                                 <td>-</td>
                                 <td>
                                     <a href="#" @click.prevent="editUser(user)"><i class="fa fa-edit"></i></a>
