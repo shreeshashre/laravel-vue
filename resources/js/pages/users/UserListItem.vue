@@ -9,6 +9,7 @@
     import { useToaster } from '../../toaster';
     
     const userIdBeingDeleted = ref(null);
+    const toastr = useToaster();
 
     defineProps({
         user: Object,
