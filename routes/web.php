@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/csrf', function() {
+    return csrf_token();
+});
+
 // Route::get('/admin/dashboard', function () {
 //     return view('dashboard');
 // });
